@@ -1,0 +1,11 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: account-service
+  cloud:
+    nacos:
+      config:
+        server-addr: 172.31.0.43:8848
+        file-extension: yml
+        namespace: b53d1b98-9d11-428f-a0bc-1ac79cfbff7e

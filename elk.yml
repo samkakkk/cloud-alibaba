@@ -1,0 +1,48 @@
+version: "3"
+services:
+  elasticsearch:
+    image: docker.io/elasticsearch:7.5.1
+    container_name: elasticsearch
+    environment:
+      - "ES_JAVA_OPTS=-Xms4096m -Xmx4096m -Xmn1300m"
+      - "TZ=Asia/Shanghai"
+    volumes:
+      - /app/elk/elasticsearch/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /app/elk/elasticsearch/data:/usr/share/elasticsearch/data:rw
+      - /app/elk/elasticsearch/logs:/usr/share/elasticsearch/logs:rw
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    restart: always
+
+#  es-head:
+#    image: tobias74/elasticsearch-head:6
+#    container_name: es-head
+#    restart: always
+#    ports:
+#      - "9100:9100"
+#
+  kibana:
+    image: docker.io/kibana:7.5.1
+    container_name: kibana
+    volumes:
+      - /app/elk/kibana/conf/kibana.yml:/usr/share/kibana/config/kibana.yml
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    restart: always
+
+  logstash:
+    image: logstash:7.5.1
+    container_name: logstash
+    command: logstash -f /usr/share/logstash/config/logstash.conf
+    volumes:
+      - /app/elk/logstash/config:/usr/share/logstash/config
+      - /app/elk/logstash/data:/usr/share/logstash/data
+    ports:
+      - "9600:9600"
+      - "5044:5044"
+    depends_on:
+      - elasticsearch
+    restart: always

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.javadaily.dubbo.mapper.AccountMapper">
+
+    <select id="selectByCode"  resultType="com.javadaily.dubbo.po.Account">
+        select *  from account WHERE ACCOUNT_CODE = #{accountCode}
+    </select>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>cloud-aliaba</artifactId>
+        <groupId>com.jianzh5.cloud</groupId>
+        <version>1.0.0</version>
+        <!--<relativePath>../cloud-common/pom.xml</relativePath>-->
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <artifactId>cloud-component</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>cloud-component-security-starter</module>
+        <module>cloud-component-doc-starter</module>
+        <module>cloud-component-logging-starter</module>
+    </modules>
+
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jianzh5.cloud</groupId>
+            <artifactId>cloud-common</artifactId>
+        </dependency>
+    </dependencies>
+
+
+</project>

@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: cloud-message
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.0.23.48:8848/
+  ## 分布式锁
+  # 单机模式
+  redis:
+    host: 172.31.0.149
+    port: 7111
+    password: qxb#redis#dev
+# 集群模式
+#  redis:
+#    cluster:
+#      nodes: 172.31.0.149:7111,172.31.0.149:7112,172.31.0.149:7113
+#    password: qxb#redis#dev
+#    cluster:
+
+
+
+#    stream:
+#      rocketmq:
+#        binder:
+#          name-server: 172.31.0.43:9876;172.31.0.44:9876
+#      bindings:
+#        output: # 定义OUTPUT
+#          destination: cloud-topic
+#          content-type: application/json
+#        input:  # 定义INPUT
+#          destination: cloud-topic
+#          content-type: application/json
+#          group: cloud-group
+
+
+server:
+  port: 0
+
+# within rocketmq
+rocketmq:
+  name-server: 172.31.0.44:9876
+  producer:
+    group: delay-group
+    send-message-timeout: 3000
+
+
+zookeeper:
+  host: 172.31.0.43:2181
+
+
+
+

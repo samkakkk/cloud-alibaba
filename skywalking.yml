@@ -1,0 +1,58 @@
+version: '3'
+services:
+  elasticsearch:
+    image: elasticsearch:6.8.5
+    container_name: elasticsearch
+    restart: always
+    volumes:
+      - /app/skywalking/elasticsearch/data:/usr/share/elasticsearch/data:rw
+      - /app/skywalking/elasticsearch/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /app/skywalking/elasticsearch/conf/jvm.options:/usr/share/elasticsearch/config/jvm.options
+      - /app/skywalking/elasticsearch/logs:/usr/share/elasticsearch/logs:rw
+    environment:
+      - TZ=Asia/Shanghai
+      - xpack.monitoring.enabled=false
+      - xpack.watcher.enabled=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
+  es-head:
+      image: tobias74/elasticsearch-head:6
+      container_name: es-head
+      restart: always
+      ports:
+        - "9100:9100"
+
+
+  skywalking-oap:
+    image: apache/skywalking-oap-server:6.5.0
+    container_name: skywalking-oap
+    restart: always
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+    ports:
+      - "11800:11800"
+      - "12800:12800"
+    environment:
+      SW_STORAGE: elasticsearch
+      SW_STORAGE_ES_CLUSTER_NODES: elasticsearch:9200
+      TZ: Asia/Shanghai
+    volumes:
+      - /app/skywalking/oap/conf/alarm-settings.yml:/skywalking/config/alarm-settings.yml
+      - /app/skywalking/oap/conf/application.yml:/skywalking/config/application.yml
+
+  skywalking-ui:
+    image: apache/skywalking-ui:6.5.0
+    container_name: skywalking-ui
+    depends_on:
+      - skywalking-oap
+    links:
+      - skywalking-oap
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      SW_OAP_ADDRESS: skywalking-oap:12800

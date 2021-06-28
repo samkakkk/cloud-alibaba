@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.jianzh5.cloud</groupId>
+    <artifactId>cloud-bom</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+
+    <properties>
+        <mybatis-plus.version>3.1.1</mybatis-plus.version>
+        <mysql.version>5.1.47</mysql.version>
+        <cloud-alibaba.version>1.0.0</cloud-alibaba.version>
+        <swagger.version>2.9.2</swagger.version>
+        <hutool.version>5.4.0</hutool.version>
+        <alibaba.fastjson.version>1.2.60</alibaba.fastjson.version>
+        <rocketmq.version>2.1.0</rocketmq.version>
+        <oauth2.version>2.2.4.RELEASE</oauth2.version>
+    </properties>
+
+    <!--管理所有第三方jar包版本，SpringCloud Alibaba 版本由主Pom控制-->
+    <dependencyManagement>
+        <dependencies>
+            <!--cloud-common 版本-->
+            <dependency>
+                <groupId>com.jianzh5.cloud</groupId>
+                <artifactId>cloud-common</artifactId>
+                <version>${cloud-alibaba.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jianzh5.cloud</groupId>
+                <artifactId>cloud-component-security-starter</artifactId>
+                <version>${cloud-alibaba.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jianzh5.cloud</groupId>
+                <artifactId>cloud-component-doc-starter</artifactId>
+                <version>${cloud-alibaba.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jianzh5.cloud</groupId>
+                <artifactId>cloud-component-logging-starter</artifactId>
+                <version>${cloud-alibaba.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jianzh5.cloud</groupId>
+                <artifactId>account-feign</artifactId>
+                <version>${cloud-alibaba.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jianzh5.cloud</groupId>
+                <artifactId>product-feign</artifactId>
+                <version>${cloud-alibaba.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.jianzh5.cloud</groupId>
+                <artifactId>dubbo-api</artifactId>
+                <version>${cloud-alibaba.version}</version>
+            </dependency>
+
+
+            <!--database-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!--swagger2-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${alibaba.fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+
+            <!-- spring oauth2 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-oauth2</artifactId>
+                <version>${oauth2.version}</version>
+            </dependency>
+
+
+        </dependencies>
+
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>nexus-aliyun</id>
+            <name>Nexus aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+</project>

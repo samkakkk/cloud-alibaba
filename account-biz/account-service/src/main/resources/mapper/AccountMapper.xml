@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.javadaily.account.mapper.AccountMapper">
+    <update id="increaseAmount">
+        update account  set amount = (amount + #{amount})  WHERE ACCOUNT_CODE = #{accountCode}
+    </update>
+
+    <delete id="deleteByCode">
+        delete from account WHERE ACCOUNT_CODE = #{accountCode}
+    </delete>
+
+    <select id="selectByCode"  resultType="com.javadaily.account.po.Account">
+        select *  from account WHERE ACCOUNT_CODE = #{accountCode}
+    </select>
+
+</mapper>

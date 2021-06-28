@@ -1,0 +1,36 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: cloud-gateway
+  cloud:
+    nacos:
+      config:
+        prefix: ${spring.application.name}
+        server-addr: 172.31.0.43:8848
+        file-extension: yml
+        group: DEFAULT_GROUP
+        namespace: b53d1b98-9d11-428f-a0bc-1ac79cfbff7e
+        shared-configs[0]:
+          data-id: cloud-gateway-log.yml
+          group: DEFAULT_GROUP
+          namespace: b53d1b98-9d11-428f-a0bc-1ac79cfbff7e
+          refresh: true
+#        shared-configs[1]:
+#          data-id: cloud-gateway-router.json
+#          group: DEFAULT_GROUP
+#          namespace: b53d1b98-9d11-428f-a0bc-1ac79cfbff7e
+#          refresh: true
+
+
+# 集成多配置文件
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

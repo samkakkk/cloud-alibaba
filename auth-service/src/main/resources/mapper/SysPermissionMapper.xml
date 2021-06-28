@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.javadaily.auth.mapper.SysPermissionMapper">
+
+
+    <select id="listPermissionsByRoles" resultType="com.javadaily.auth.po.SysPermission">
+        SELECT
+        permission.*
+    FROM
+        sys_permission permission
+    LEFT JOIN sys_role_permission role_permission ON permission.ID = role_permission.permission_id
+    WHERE
+        role_permission.role_id IN
+        <foreach collection="roleIds" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+
+</mapper>

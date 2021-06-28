@@ -1,0 +1,37 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+/logs/
+out
+gen
+account-biz/account-feign/target/generated-sources/
+account-biz/account-service/src/test/
+account-biz/account-service/target/generated-sources/
+auth-service/src/test/
+auth-service/target/generated-sources/
+cloud-common/target/generated-sources/
+cloud-gateway/target/generated-sources/
+order-biz/order-feign/src/
+order-biz/order-service/src/test/
+order-biz/order-service/target/generated-sources/
+product-biz/product-feign/target/generated-sources/
+product-biz/product-service/src/test/
+product-biz/product-service/target/generated-sources/
+
+/product-biz/product-service/target/
+/order-biz/order-service/target/
+account-biz/account-service/target/classes/
+auth-service/target/classes/
+cloud-common/target/classes/
+cloud-gateway/target/classes/
+cloud-message/target/classes/
+
+/order-biz/order-service/target/classes/
+cloud-message/target/generated-sources/
+cloud-message/target/generated-test-sources/
+cloud-message/target/test-classes/
+/order-biz/order-service/target/classes/

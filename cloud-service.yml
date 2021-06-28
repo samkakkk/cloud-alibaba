@@ -1,0 +1,22 @@
+version: "3"
+services:
+  auth-service:
+    container_name: auth-service
+    image: auth-service:latest
+    ports:
+      - "5000:5000"
+    restart: always
+
+  cloud-gateway:
+    container_name: cloud-gateway
+    image: cloud-gateway:latest
+    ports:
+      - "8090:8090"
+    restart: always
+
+  account-service:
+    container_name: account-service
+    image: account-service:latest
+    ports:
+      - "8010:8010"
+    restart: always
