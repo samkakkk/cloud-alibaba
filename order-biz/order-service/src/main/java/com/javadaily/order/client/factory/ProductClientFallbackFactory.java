@@ -2,7 +2,7 @@ package com.javadaily.order.client.factory;
 
 import com.javadaily.order.client.ProductClient;
 import com.javadaily.order.client.fallback.ProductClientFallback;
-import feign.hystrix.FallbackFactory;
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 
 /**
