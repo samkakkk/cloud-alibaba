@@ -52,6 +52,7 @@
         <!--
         todo
         如何解决feign与sentinel集成，主启动类需要使用@SpringCloudApplication才可复现
+        确认是bug，后续升级
         -->
         <!--<dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -63,6 +64,7 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -3,6 +3,7 @@ package com.javadaily.order;
 import com.javadaily.component.security.annotation.EnableCloudResourceServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
@@ -16,6 +17,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication/*(scanBasePackages = {"com.javadaily.product","com.javadaily.order"})*/
 @EnableDiscoveryClient
+//@SpringCloudApplication
 @EnableFeignClients/*(basePackages = "com.javadaily.account.*")*/
 @EnableCloudResourceServer
 //@EnableBinding({Source.class}) //发送消息

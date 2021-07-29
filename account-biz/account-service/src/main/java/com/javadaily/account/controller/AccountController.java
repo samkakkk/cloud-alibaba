@@ -35,6 +35,8 @@ public class AccountController implements AccountApi {
 
     private final AccountService accountService;
 
+
+
     @Override
     @PostMapping("/account/insert")
     public ResultData<String> insert(@RequestBody AccountDTO accountDTO){
@@ -90,6 +92,15 @@ public class AccountController implements AccountApi {
         log.info("reduce account amount, accountCode is :{},amount is {} ",accountCode,amount);
         accountService.reduceAccount(accountCode,amount);
         return ResultData.success("success");
+    }
+
+    /**
+     * 隐私接口，禁止通过网关访问
+     */
+    @Override
+    @GetMapping("/account/getSecretValue")
+    public ResultData<String> getSecretValue() {
+        return ResultData.success("隐私接口，禁止通过网关访问");
     }
 
     /**

@@ -51,4 +51,9 @@ public class AccountClientFallback implements AccountClient {
     public ResultData<String> reduce(String accountCode, BigDecimal amount) {
         return ResultData.fail("接口熔断");
     }
+
+    @Override
+    public ResultData<String> getSecretValue() {
+        return ResultData.fail("接口熔断");
+    }
 }

@@ -1,15 +1,13 @@
 package com.javadaily.order.controller;
 
 import com.javadaily.base.ResultData;
+import com.javadaily.order.client.AccountClient;
 import com.javadaily.order.dto.OrderDTO;
 import com.javadaily.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -23,7 +21,16 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired) )
 public class OrderController {
     private final OrderService orderService;
+    private final AccountClient accountClient;
 
+
+    @GetMapping("/order/{orderNo}")
+    public ResultData<OrderDTO> getById(@PathVariable("orderNo") String orderNo){
+        OrderDTO orderDTO = orderService.selectByNo(orderNo);
+        ResultData<String> secretValue = accountClient.getSecretValue();
+        log.info(secretValue);
+        return ResultData.success(orderDTO);
+    }
 
     @PostMapping("/order/create")
     public ResultData<OrderDTO> create(@RequestBody OrderDTO orderDTO){
