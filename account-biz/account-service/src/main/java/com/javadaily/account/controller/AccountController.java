@@ -98,7 +98,7 @@ public class AccountController implements AccountApi {
      * 隐私接口，禁止通过网关访问
      */
     @Override
-    @GetMapping("/account/getSecretValue")
+    @GetMapping("/pv/account/getSecretValue")
     public ResultData<String> getSecretValue() {
         return ResultData.success("隐私接口，禁止通过网关访问");
     }

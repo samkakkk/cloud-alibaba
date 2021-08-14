@@ -31,7 +31,7 @@ public interface AccountApi {
     @PostMapping("/account/reduce")
     ResultData<String> reduce(@RequestParam("accountCode")String accountCode, @RequestParam("amount") BigDecimal amount);
 
-    @GetMapping("/account/getSecretValue")
+    @GetMapping("/pv/account/getSecretValue")
     ResultData<String> getSecretValue();
 
 }
