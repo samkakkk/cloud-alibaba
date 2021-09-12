@@ -15,7 +15,7 @@ import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClients;
  * @author jianzh5
  * @date 2020/1/9 19:35
  */
-@SpringBootApplication
+@SpringBootApplication/*(exclude = {DataSourceAutoConfiguration.class})*/
 @EnableDiscoveryClient
 //@LoadBalancerClient(value = "auth-service", configuration = CustomLoadBalancerConfiguration.class)
 //@LoadBalancerClients(defaultConfiguration = VersionLoadBalancerConfiguration.class)

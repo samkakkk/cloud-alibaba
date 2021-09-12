@@ -1,21 +1,7 @@
 package com.javadaily.gateway.oauth2;
 
-import com.alibaba.fastjson.JSONObject;
-import com.javadaily.base.ResultData;
-import com.javadaily.base.ReturnCode;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.core.io.buffer.DataBufferFactory;
-import org.springframework.core.io.buffer.DataBufferUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.server.ServerAuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
-import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Mono;
-
-import java.nio.charset.Charset;
 
 /**
  * <p>
@@ -28,9 +14,10 @@ import java.nio.charset.Charset;
  */
 @Slf4j
 @Component
-public class AuthenticationEntryPointHandler implements ServerAuthenticationEntryPoint {
+@Deprecated
+public class AuthenticationEntryPointHandler /*implements ServerAuthenticationEntryPoint */{
 
-    @Override
+    /*@Override
     public Mono<Void> commence(ServerWebExchange exchange, AuthenticationException ex) {
         //获取请求路径
         String path = exchange.getRequest().getURI().getPath();
@@ -48,5 +35,5 @@ public class AuthenticationEntryPointHandler implements ServerAuthenticationEntr
                 DataBufferUtils.release(buffer);
             });
         });
-    }
+    }*/
 }

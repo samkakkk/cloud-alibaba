@@ -28,6 +28,7 @@ import java.util.concurrent.Executor;
  * @date 2020/8/26 13:47
  */
 @Slf4j
+@Deprecated
 public class NacosRouteDefinitionRepository implements RouteDefinitionRepository {
     private static final String DATA_ID = "cloud-gateway-router.json";
     private static final String GROUP_ID = "DEFAULT_GROUP";

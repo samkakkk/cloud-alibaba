@@ -82,21 +82,6 @@ public class VersionGrayLoadBalancer implements ReactorServiceInstanceLoadBalanc
                 return processRibbonInstanceResponse(instances);
             }
 
-            //filter Service Instance
-//            Optional<ServiceInstance> instanceOptional = instances.stream().filter(instance -> {
-//                //get metadata
-//                Map<String,String> metadata = instance.getMetadata();
-//                String targetVersion = MapUtil.getStr(metadata, "version");
-//                return reqVersion.equals(targetVersion);
-//            }).findFirst();
-//
-//            if(instanceOptional.isPresent()){
-//                return new DefaultResponse(instanceOptional.get());
-//            }else {
-//                return processRibbonInstanceResponse(instances);
-//            }
-
-
         }
     }
 

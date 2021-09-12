@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
  * @date 2021/6/7 11:15
  */
 @Slf4j
+@Deprecated
 public class NacosWeightRandomLoadBalancer implements ReactorServiceInstanceLoadBalancer {
 
     private ObjectProvider<ServiceInstanceListSupplier> serviceInstanceListSupplierProvider;

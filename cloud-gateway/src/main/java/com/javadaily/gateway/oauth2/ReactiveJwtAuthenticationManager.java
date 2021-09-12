@@ -1,14 +1,6 @@
 package com.javadaily.gateway.oauth2;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.ReactiveAuthenticationManager;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
-import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.server.resource.BearerTokenAuthenticationToken;
-import reactor.core.publisher.Mono;
 
 /**
  * <p>
@@ -20,8 +12,9 @@ import reactor.core.publisher.Mono;
  * @date 2020/7/5 17:56
  */
 @Slf4j
-public class ReactiveJwtAuthenticationManager implements ReactiveAuthenticationManager {
-    private TokenStore tokenStore;
+@Deprecated
+public class ReactiveJwtAuthenticationManager /*implements ReactiveAuthenticationManager*/ {
+    /*private TokenStore tokenStore;
 
     public ReactiveJwtAuthenticationManager(TokenStore tokenStore){
         this.tokenStore = tokenStore;
@@ -56,5 +49,5 @@ public class ReactiveJwtAuthenticationManager implements ReactiveAuthenticationM
                     }
                 })).cast(Authentication.class)
                 ;
-    }
+    }*/
 }

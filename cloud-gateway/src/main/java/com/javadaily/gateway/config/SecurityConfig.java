@@ -1,23 +1,9 @@
 package com.javadaily.gateway.config;
 
-import com.javadaily.base.CloudConstant;
-import com.javadaily.gateway.oauth2.AccessDeniedHandler;
-import com.javadaily.gateway.oauth2.AccessManager;
-import com.javadaily.gateway.oauth2.AuthenticationEntryPointHandler;
-import com.javadaily.gateway.oauth2.ReactiveJwtAuthenticationManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-import org.springframework.security.oauth2.server.resource.web.server.ServerBearerTokenAuthenticationConverter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.security.web.server.authentication.AuthenticationWebFilter;
-
-import javax.sql.DataSource;
 
 /**
  * <p>
@@ -30,9 +16,10 @@ import javax.sql.DataSource;
  * @date 2020/2/28 15:50
  */
 @Configuration
+@Deprecated
 public class SecurityConfig {
 
-    @Autowired
+   /* @Autowired
     private DataSource dataSource;
     @Autowired
     private AccessManager accessManager;
@@ -42,41 +29,26 @@ public class SecurityConfig {
 
     @Autowired
     private AuthenticationEntryPointHandler authenticationEntryPointHandler;
-
+*/
 
     @Bean
     SecurityWebFilterChain webFluxSecurityFilterChain(ServerHttpSecurity http) throws Exception{
-        //token管理器
-        //ReactiveAuthenticationManager tokenAuthenticationManager = new ReactiveJdbcAuthenticationManager(new JdbcTokenStore(dataSource));
-
-        //也可以写成
+/*
+        //jwt token管理器
         ReactiveAuthenticationManager tokenAuthenticationManager = new ReactiveJwtAuthenticationManager(tokenStore());
-//
         //认证过滤器
         AuthenticationWebFilter authenticationWebFilter = new AuthenticationWebFilter(tokenAuthenticationManager);
         authenticationWebFilter.setServerAuthenticationConverter(new ServerBearerTokenAuthenticationConverter());
+*/
 
         http
                 .httpBasic().disable()
                 .csrf().disable();
-//                .authorizeExchange()
-//                .pathMatchers(HttpMethod.OPTIONS).permitAll()
-//                .anyExchange().access(accessManager)
-//                //异常处理器
-//                .and()
-//                    .exceptionHandling()
-//                        .accessDeniedHandler(accessDeniedHandler)
-//                        .authenticationEntryPoint(authenticationEntryPointHandler)
-//                .and()
-//                // 跨域过滤器
-////                .addFilterAt(corsFilter(), SecurityWebFiltersOrder.CORS)
-//                //oauth2认证过滤器
-//                .addFilterAt(authenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION);
 
         return http.build();
     }
 
-
+/*
 //    @Bean
     public TokenStore tokenStore() {
         return new JwtTokenStore(jwtTokenEnhancer());
@@ -89,6 +61,6 @@ public class SecurityConfig {
         jwtTokenEnhancer.setSigningKey(CloudConstant.AUTH_SIGNING_KEY);
         return jwtTokenEnhancer;
     }
-
+*/
 
 }

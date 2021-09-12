@@ -76,4 +76,17 @@
     </dependencyManagement>
 
 
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun repo</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+
+        <repository>
+            <id>repo-cache</id>
+            <name>repo-cache</name>
+            <url>http://192.168.58.50:8081/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
 </project>

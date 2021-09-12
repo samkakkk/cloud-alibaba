@@ -47,17 +47,6 @@
 
         </RollingFile>
 
-       <!-- <RollingFile name="RollingFileWarn" fileName="${LOG_HOME}/${LOG_NAME}-warn.log"
-                     filePattern="${LOG_HOME}/bak/$${date:yyyy-MM}/${LOG_NAME}-warn-%d{yyyy-MM-dd}-%i.log">
-            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="${FORMAT}"/>
-            <Policies>
-                <TimeBasedTriggeringPolicy/>
-                <SizeBasedTriggeringPolicy size="100 MB"/>
-            </Policies>
-            &lt;!&ndash; DefaultRolloverStrategy:用来指定同一个文件夹下最多有几个日志文件时开始删除最旧的，创建新的(通过max属性) &ndash;&gt;
-            <DefaultRolloverStrategy max="20"/>
-        </RollingFile>-->
 
         <!--错误日志-->
         <RollingFile name="RollingFileError" fileName="${LOG_HOME}/${LOG_NAME}-error.log"
@@ -72,6 +61,7 @@
 
         </RollingFile>
 
+        <!--配置access log-->
         <RollingRandomAccessFile  name="RollingAccessLog"
                                   immediateFlush="false"
                                   fileName="${LOG_HOME}/${LOG_NAME}-access.log"

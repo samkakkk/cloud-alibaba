@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.common.exceptions.BadClientCredential
 import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
 import org.springframework.security.oauth2.common.exceptions.UnsupportedGrantTypeException;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -20,6 +21,7 @@ import org.springframework.security.oauth2.provider.error.WebResponseExceptionTr
  * @date 2021/1/29 9:23
  */
 @Slf4j
+@Component
 public class CustomWebResponseExceptionTranslator implements WebResponseExceptionTranslator {
 
 

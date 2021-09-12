@@ -1,22 +1,9 @@
 package com.javadaily.gateway.oauth2;
 
 import cn.hutool.core.collection.ConcurrentHashSet;
-import com.javadaily.base.CloudConstant;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.security.authorization.AuthorizationDecision;
-import org.springframework.security.authorization.ReactiveAuthorizationManager;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.security.web.server.authorization.AuthorizationContext;
-import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
-import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Mono;
 
-import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -29,32 +16,33 @@ import java.util.Set;
  * @date 2020/2/28 21:21
  */
 @Slf4j
-@Component
-public class AccessManager implements ReactiveAuthorizationManager<AuthorizationContext> {
+//@Component
+@Deprecated
+public class AccessManager /*implements ReactiveAuthorizationManager<AuthorizationContext>*/ {
     private final Set<String> permitAll = new ConcurrentHashSet<>();
     private static final AntPathMatcher ANT_PATH_MATCHER = new AntPathMatcher();
 
 
-    public AccessManager (){
-        permitAll.add("/");
-        permitAll.add("/error");
-        permitAll.add("/favicon.ico");
-        //如果生产环境开启swagger调试
-        permitAll.add("/**/v2/api-docs/**");
-        permitAll.add("/**/swagger-resources/**");
-        permitAll.add("/webjars/**");
-        permitAll.add("/doc.html");
-        permitAll.add("/swagger-ui.html");
-
-        permitAll.add("/**/oauth/**");
-        permitAll.add("/actuator/**");
-        permitAll.add("/blog/**");
-    }
+//    public AccessManager (){
+//        permitAll.add("/");
+//        permitAll.add("/error");
+//        permitAll.add("/favicon.ico");
+//        //如果生产环境开启swagger调试
+//        permitAll.add("/**/v2/api-docs/**");
+//        permitAll.add("/**/swagger-resources/**");
+//        permitAll.add("/webjars/**");
+//        permitAll.add("/doc.html");
+//        permitAll.add("/swagger-ui.html");
+//
+//        permitAll.add("/**/oauth/**");
+//        permitAll.add("/actuator/**");
+//        permitAll.add("/blog/**");
+//    }
 
     /**
      * 实现权限验证判断
      */
-    @Override
+    /*@Override
     public Mono<AuthorizationDecision> check(Mono<Authentication> authenticationMono, AuthorizationContext authorizationContext) {
         ServerWebExchange exchange = authorizationContext.getExchange();
         ServerHttpRequest request = exchange.getRequest();
@@ -73,23 +61,21 @@ public class AccessManager implements ReactiveAuthorizationManager<Authorization
             return Mono.just(new AuthorizationDecision(true));
         }
 
-//        AntPathRequestMatcher antPathRequestMatcher = new AntPathRequestMatcher("/**","GET");
-//        antPathRequestMatcher.matcher(request);
 
         return authenticationMono.map(auth -> new AuthorizationDecision(checkAuthorities(auth, methodPath)))
                 .defaultIfEmpty(new AuthorizationDecision(false));
 
-    }
+    }*/
 
     /**
      * 校验是否属于静态资源
      * @param requestPath 请求路径
      * @return
      */
-    private boolean permitAll(String requestPath) {
+   /* private boolean permitAll(String requestPath) {
         return permitAll.stream()
                 .filter(r -> ANT_PATH_MATCHER.match(r, requestPath)).findFirst().isPresent();
-    }
+    }*/
 
 
     /**
@@ -100,7 +86,7 @@ public class AccessManager implements ReactiveAuthorizationManager<Authorization
      * @param requestPath 请求路径
      * @return
      */
-    private boolean checkAuthorities(Authentication auth, String requestPath) {
+   /* private boolean checkAuthorities(Authentication auth, String requestPath) {
         if(auth instanceof OAuth2Authentication){
             OAuth2Authentication authentication = (OAuth2Authentication) auth;
             String clientId = authentication.getOAuth2Request().getClientId();
@@ -120,7 +106,7 @@ public class AccessManager implements ReactiveAuthorizationManager<Authorization
         }
 
         return true;
-    }
+    }*/
 
 
 

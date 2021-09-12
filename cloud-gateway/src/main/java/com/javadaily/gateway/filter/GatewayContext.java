@@ -13,6 +13,7 @@ import org.springframework.util.MultiValueMap;
 @Getter
 @Setter
 @ToString
+@Deprecated
 public class GatewayContext {
 
     public static final String CACHE_GATEWAY_CONTEXT = "cacheGatewayContext";

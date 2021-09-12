@@ -19,10 +19,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>
-                <exclusion>
+                <!--<exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
+                </exclusion>-->
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -35,10 +35,10 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
-        <dependency>
+       <!-- <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -106,6 +106,11 @@
         <dependency>
             <groupId>com.jianzh5.cloud</groupId>
             <artifactId>cloud-component-security-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
         </dependency>
 
 

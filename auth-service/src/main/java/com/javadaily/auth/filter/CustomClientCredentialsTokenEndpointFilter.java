@@ -25,6 +25,8 @@ public class CustomClientCredentialsTokenEndpointFilter extends ClientCredential
         this.authenticationEntryPoint = authenticationEntryPoint;
     }
 
+
+
     @Override
     protected AuthenticationManager getAuthenticationManager() {
         return configurer.and().getSharedObject(AuthenticationManager.class);

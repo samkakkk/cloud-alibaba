@@ -28,6 +28,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 import javax.sql.DataSource;
 
@@ -139,6 +140,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenGranter(tokenGranter);
                 //注入自定义的tokenservice，如果不使用自定义的tokenService那么就需要将tokenServce里的配置移到这里
 //                .tokenServices(tokenServices());
+
         // 自定义异常转换类
         endpoints.exceptionTranslator(new CustomWebResponseExceptionTranslator());
     }
@@ -155,6 +157,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        //重写客户端异常
         CustomClientCredentialsTokenEndpointFilter endpointFilter = new CustomClientCredentialsTokenEndpointFilter(security);
         endpointFilter.afterPropertiesSet();
         endpointFilter.setAuthenticationEntryPoint(authenticationEntryPoint());
@@ -162,9 +165,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         security
                 .authenticationEntryPoint(authenticationEntryPoint())
+                .accessDeniedHandler(accessDeniedHandler())
                 /*.allowFormAuthenticationForClients()*/ //如果使用表单认证则需要加上
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return (request, response, e) -> {
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            ResultData<String> resultData = ResultData.fail(ReturnCode.INVALID_TOKEN_OR_EXPIRED.getCode(), ReturnCode.INVALID_TOKEN_OR_EXPIRED.getMessage());
+            WebUtils.writeJson(response,resultData);
+        };
     }
 
     @Bean

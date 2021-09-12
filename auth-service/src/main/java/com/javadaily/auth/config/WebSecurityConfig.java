@@ -3,6 +3,7 @@ package com.javadaily.auth.config;
 import com.javadaily.auth.service.impl.UserDetailServiceImpl;
 import com.javadaily.auth.sms.SmsCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,6 +27,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+//@Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -70,14 +72,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 加入验证码登陆
         http.apply(smsCodeSecurityConfig);
 
-        http.authorizeRequests()
-                //过滤特殊
-//                .antMatchers("/sms/**").permitAll() // 加入验证码登陆
+        http
+                .authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
+                .and()
+                .authorizeRequests().antMatchers("/token/**","/sms/**").permitAll()
                 .anyRequest().authenticated()
 //                .and().formLogin().permitAll()
-                .and().httpBasic()
-                .and().cors()
-                .and().csrf().disable();
+//                .and().httpBasic()
+//                .and().cors()
+                .and()
+                .csrf().disable();
     }
 
 
@@ -89,7 +93,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/v2/api-docs/**",
                 "/swagger-resources/**",
                 "/webjars/**",
-                "/favicon.ico"
+                "/favicon.ico",
+                "/token/**"
             );
     }
 }

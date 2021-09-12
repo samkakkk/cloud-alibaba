@@ -17,6 +17,8 @@
         <alibaba.fastjson.version>1.2.60</alibaba.fastjson.version>
         <rocketmq.version>2.1.0</rocketmq.version>
         <oauth2.version>2.2.4.RELEASE</oauth2.version>
+        <logstash.version>6.6</logstash.version>
+        <nimbusds.version>9.13</nimbusds.version>
     </properties>
 
     <!--管理所有第三方jar包版本，SpringCloud Alibaba 版本由主Pom控制-->
@@ -78,6 +80,8 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
+
+
             <!--swagger2-->
             <dependency>
                 <groupId>io.springfox</groupId>
@@ -98,6 +102,13 @@
             </dependency>
 
             <dependency>
+                <groupId>com.nimbusds</groupId>
+                <artifactId>nimbus-jose-jwt</artifactId>
+                <version>${nimbusds.version}</version>
+            </dependency>
+
+
+            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${alibaba.fastjson.version}</version>
@@ -116,16 +127,16 @@
                 <version>${oauth2.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash.version}</version>
+            </dependency>
+
 
         </dependencies>
 
     </dependencyManagement>
 
-    <repositories>
-        <repository>
-            <id>nexus-aliyun</id>
-            <name>Nexus aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
+
 </project>

@@ -38,4 +38,19 @@ public class CloudConstant {
      * 网关保护值
      */
     public static final String GATEWAY_TOKEN_VALUE = "gateway:javadaily";
+
+    /**
+     * Jwt请求头
+     */
+    public static final String JWT_HEADER_KEY = "Authorization";
+
+    /**
+     * 无效Token
+     */
+    public static final String TOKEN_BLACKLIST_PREFIX = "InvalidToken";
+
+    /**
+     * Bearer 请求头
+     */
+    public static final String BEARER_TYPE = "Bearer";
 }
