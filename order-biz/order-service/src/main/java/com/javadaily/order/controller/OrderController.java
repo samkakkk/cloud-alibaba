@@ -24,13 +24,32 @@ public class OrderController {
     private final AccountClient accountClient;
 
 
+    /**
+     * 获取Order详情
+     * @param orderNo order编号
+     * @return ResultData<OrderDTO>
+     */
     @GetMapping("/order/{orderNo}")
-    public ResultData<OrderDTO> getById(@PathVariable("orderNo") String orderNo){
+    public OrderDTO getById(@PathVariable("orderNo") String orderNo){
         OrderDTO orderDTO = orderService.selectByNo(orderNo);
+        return orderDTO;
+    }
+
+
+
+
+    /**
+     * 验证调用隐私接口
+     * @return ResultData<String>
+     */
+    @GetMapping("/order/secret")
+    public ResultData<String> secret(){
         ResultData<String> secretValue = accountClient.getSecretValue();
         log.info(secretValue);
-        return ResultData.success(orderDTO);
+        return secretValue;
     }
+
+
 
     @PostMapping("/order/create")
     public ResultData<OrderDTO> create(@RequestBody OrderDTO orderDTO){

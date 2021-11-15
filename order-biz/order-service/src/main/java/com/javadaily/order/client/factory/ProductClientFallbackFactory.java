@@ -1,6 +1,5 @@
 package com.javadaily.order.client.factory;
 
-import com.javadaily.order.client.ProductClient;
 import com.javadaily.order.client.fallback.ProductClientFallback;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
@@ -15,13 +14,11 @@ import org.springframework.stereotype.Component;
  * @date 2020/10/13 15:43
  */
 @Component
-public class ProductClientFallbackFactory implements FallbackFactory<ProductClient> {
+public class ProductClientFallbackFactory implements FallbackFactory<ProductClientFallback> {
 
     @Override
-    public ProductClient create(Throwable throwable) {
-        ProductClientFallback productClientFallback = new ProductClientFallback();
-        productClientFallback.setCause(throwable);
-        return productClientFallback;
+    public ProductClientFallback create(Throwable throwable) {
+        return new ProductClientFallback(throwable);
     }
 
 }

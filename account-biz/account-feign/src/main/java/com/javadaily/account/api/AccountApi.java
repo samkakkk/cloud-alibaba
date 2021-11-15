@@ -28,6 +28,11 @@ public interface AccountApi {
     @GetMapping("/account/getByCode/{accountCode}")
     ResultData<AccountDTO> getByCode(@PathVariable(value = "accountCode") String accountCode);
 
+
+    @GetMapping("/account/getByCode2/{accountCode}")
+    AccountDTO getByCode2(@PathVariable(value = "accountCode") String accountCode);
+
+
     @PostMapping("/account/reduce")
     ResultData<String> reduce(@RequestParam("accountCode")String accountCode, @RequestParam("amount") BigDecimal amount);
 

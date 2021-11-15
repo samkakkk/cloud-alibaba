@@ -29,6 +29,7 @@
             </exclusions>
         </dependency>
 
+        <!--undertow 性能比tomcat稍高-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
@@ -49,6 +50,12 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
+        <!--替换原生feign，使用okhttp-->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+        </dependency>
+
         <!--
         todo
         如何解决feign与sentinel集成，主启动类需要使用@SpringCloudApplication才可复现
@@ -66,6 +73,7 @@
         </dependency>
 
 
+        <!--升级2020版本以上修复-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
@@ -75,6 +83,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
+        <!--升级2020版本以上修复-->
 
 
         <!--        <dependency>
@@ -144,10 +153,7 @@
 
 
 
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-okhttp</artifactId>
-        </dependency>
+
 
 
     </dependencies>

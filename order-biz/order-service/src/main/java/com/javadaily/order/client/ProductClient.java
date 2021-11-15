@@ -1,6 +1,5 @@
 package com.javadaily.order.client;
 
-import com.javadaily.order.client.factory.ProductClientFallbackFactory;
 import com.javadaily.account.api.ProductApi;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -15,6 +14,6 @@ import org.springframework.stereotype.Component;
  * @date 2020/11/30 14:50
  */
 @Component
-@FeignClient(name = "product-service",fallbackFactory = ProductClientFallbackFactory.class)
+@FeignClient(name = "product-service"/*,fallbackFactory = ProductClientFallbackFactory.class*/)
 public interface ProductClient extends ProductApi {
 }

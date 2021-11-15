@@ -26,9 +26,9 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <!--<spring-boot.version>2.3.4.RELEASE</spring-boot.version>
-        <alibaba-cloud.version>2.2.2.RELEASE</alibaba-cloud.version>
-        <springcloud.version>Hoxton.SR8</springcloud.version>-->
+        <!--<spring-boot.version>2.3.2.RELEASE</spring-boot.version>
+        <alibaba-cloud.version>2.2.6.RELEASE</alibaba-cloud.version>
+        <springcloud.version>Hoxton.SR9</springcloud.version>-->
         <spring-boot.version>2.4.2</spring-boot.version>
         <alibaba-cloud.version>2021.1</alibaba-cloud.version>
         <springcloud.version>2020.0.0</springcloud.version>

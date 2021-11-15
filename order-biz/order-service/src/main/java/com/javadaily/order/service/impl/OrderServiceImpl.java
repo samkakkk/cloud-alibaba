@@ -1,9 +1,10 @@
 package com.javadaily.order.service.impl;
 
+import com.javadaily.account.dto.AccountDTO;
 import com.javadaily.base.CloudConstant;
-import com.javadaily.account.api.AccountApi;
-import com.javadaily.account.api.ProductApi;
 import com.javadaily.message.UserAddMoneyDTO;
+import com.javadaily.order.client.AccountClient;
+import com.javadaily.order.client.ProductClient;
 import com.javadaily.order.dto.OrderDTO;
 import com.javadaily.order.mapper.OrderMapper;
 import com.javadaily.order.mapper.RocketMqTransactionLogMapper;
@@ -37,8 +38,10 @@ import java.util.UUID;
 @Log4j2
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class OrderServiceImpl implements OrderService {
-    private final AccountApi accountApi;
-    private final ProductApi productApi;
+
+    private final AccountClient accountClient;
+    private final ProductClient productClient;
+
     private final OrderMapper orderMapper;
     private final RocketMQTemplate rocketMQTemplate;
     private final RocketMqTransactionLogMapper rocketMqTransactionLogMapper;
@@ -52,9 +55,9 @@ public class OrderServiceImpl implements OrderService {
         this.saveOrder(order);
         log.info("ORDER XID is: {}", RootContext.getXID());
         //账户余额扣减
-        accountApi.reduce(orderDTO.getAccountCode(), orderDTO.getAmount());
+        accountClient.reduce(orderDTO.getAccountCode(), orderDTO.getAmount());
         //库存扣减
-        productApi.deduct(orderDTO.getProductCode(),orderDTO.getCount());
+        productClient.deduct(orderDTO.getProductCode(),orderDTO.getCount());
     }
 
 
@@ -63,13 +66,37 @@ public class OrderServiceImpl implements OrderService {
         orderMapper.insert(order);
     }
 
+
+
     @Override
     public OrderDTO selectByNo(String orderNo) {
         OrderDTO orderDTO = new OrderDTO();
+
+        //1. 查询订单基础信息
         Order order = orderMapper.selectByNo(orderNo);
         BeanUtils.copyProperties(order,orderDTO);
+
+        //2. 通过feign获取用户信息
+//        ResultData<AccountDTO> accountResult = accountClient.getByCode(order.getAccountCode());
+//        ResultData<AccountDTO> accountResult = accountClient.getByCode("javadaily");
+//        if(accountResult.isSuccess()){
+//            orderDTO.setAccountDTO(accountResult.getData());
+//        }
+
+
+        AccountDTO accountResult = accountClient.getByCode2(order.getAccountCode());
+        orderDTO.setAccountDTO(accountResult);
+
+        //3. 通过feign获取产品信息
+//        ResultData<ProductDTO> productResult = productClient.getByCode(order.getProductCode());
+//        if(productResult.isSuccess()){
+//            orderDTO.setProductDTO(productResult.getData());
+//        }
+
         return orderDTO;
     }
+
+
 
     @Transactional(rollbackFor = RuntimeException.class)
     @Override

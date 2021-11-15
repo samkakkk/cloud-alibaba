@@ -1,0 +1,38 @@
+version: "3"
+services:
+  mysql:
+    container_name: cloud_mysql
+    image: mysql/mysql-server:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=KingZ_71
+      - MYSQL_DATABASE=nacos_devtest
+      - MYSQL_USER=cloud_alibaba
+      - MYSQL_PASSWORD=cloud_alibaba
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  nacos:
+    image: nacos/nacos-server:2.0.3
+    container_name: nacos-standalone-mysql
+    environment:
+      - PREFER_HOST_MODE=hostname
+      - MODE=standalone
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - MYSQL_SERVICE_HOST=mysql
+      - MYSQL_SERVICE_DB_NAME=nacos_devtest
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_USER=cloud_alibaba
+      - MYSQL_SERVICE_PASSWORD=cloud_alibaba
+      - MYSQL_SERVICE_DB_PARAM=characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false
+    volumes:
+      - ./standalone-logs/:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9555:9555"
+    depends_on:
+      - mysql
+    restart: always

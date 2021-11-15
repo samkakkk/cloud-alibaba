@@ -1,2 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.javadaily.exception.RestExceptionHandler
+  com.javadaily.handler.RestExceptionHandler,\
+  com.javadaily.handler.BaseResponseAdvice,\
+  com.javadaily.config.OpenFeignConfig

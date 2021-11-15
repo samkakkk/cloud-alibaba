@@ -26,6 +26,8 @@ public enum ReturnCode {
     RC401(401,"匿名用户访问无权限资源时的异常"),
     /**服务异常**/
     RC500(500,"服务异常"),
+    /**服务异常**/
+    BUSINESS_EXCEPTION(3001,"业务异常，操作失败"),
 
     INVALID_TOKEN(2001,"访问令牌不合法"),
     ACCESS_DENIED(2003,"没有权限访问该资源"),

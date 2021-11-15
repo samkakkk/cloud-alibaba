@@ -1,9 +1,8 @@
 package com.javadaily.order.client.fallback;
 
+import com.javadaily.account.dto.ProductDTO;
 import com.javadaily.base.ResultData;
 import com.javadaily.order.client.ProductClient;
-import com.javadaily.account.dto.ProductDTO;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -17,10 +16,11 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ProductClientFallback implements ProductClient {
-    @Setter
-    private Throwable cause;
+    private Throwable throwable;
 
-
+    public ProductClientFallback(Throwable throwable){
+        this.throwable = throwable;
+    }
 
     @Override
     public ResultData<String> insert(ProductDTO productDTO) {
@@ -39,7 +39,7 @@ public class ProductClientFallback implements ProductClient {
 
     @Override
     public ResultData<ProductDTO> getByCode(String productCode) {
-        log.error("查询失败,接口异常" ,cause);
+        log.error("查询失败,接口异常" ,throwable);
         ProductDTO product = new ProductDTO();
         product.setProductCode("000");
         product.setProductName("测试Feign");

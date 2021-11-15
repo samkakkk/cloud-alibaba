@@ -33,6 +33,7 @@ public class AuthController {
 
     /**
      * 用户退出登录
+     * @author jianzhang11
      * @param authHeader 从请求头获取token
      */
     @DeleteMapping("/logout")

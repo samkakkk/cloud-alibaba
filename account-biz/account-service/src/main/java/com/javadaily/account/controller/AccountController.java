@@ -70,7 +70,6 @@ public class AccountController implements AccountApi {
     @ApiOperation("select接口")
     @GetMapping("/account/getByCode/{accountCode}")
     @SentinelResource(value = "getByCode",blockHandler = "handleException")
-//    @SentinelResource(value = "getByCode")
     @PreAuthorize("hasPrivilege('queryAccount')")
 //    @PreAuthorize("hasAuthority('queryAccount111')")
     @SysLog("查找用户")
@@ -83,6 +82,18 @@ public class AccountController implements AccountApi {
         AccountDTO accountDTO = accountService.selectByCode(accountCode);
         return ResultData.success(accountDTO);
     }
+
+
+
+    @Override
+    @ApiOperation("select接口")
+    @GetMapping("/account/getByCode2/{accountCode}")
+    @ResponseBody
+    public AccountDTO getByCode2(@PathVariable(value = "accountCode") String accountCode){
+        return accountService.selectByCode(accountCode);
+    }
+
+
 
 
     @PreAuthorize("hasAuthority('account:reduce')")

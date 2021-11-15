@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 @Slf4j
 public class AccountClientFallback implements AccountClient {
     @Setter
-    private Throwable cause;
+    private Throwable throwable;
 
 
     @Override
@@ -40,11 +40,17 @@ public class AccountClientFallback implements AccountClient {
 
     @Override
     public ResultData<AccountDTO> getByCode(String accountCode) {
-        log.error("查询失败,接口异常" ,cause);
+        log.error("查询失败,接口异常" ,throwable);
         AccountDTO account = new AccountDTO();
         account.setAccountCode("000");
         account.setAccountName("测试Feign");
         return ResultData.success(account);
+    }
+
+    @Override
+    public AccountDTO getByCode2(String accountCode) {
+        log.error("异常::::" + throwable.getMessage());
+        return new AccountDTO();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.javadaily.order.dto;
 
+import com.javadaily.account.dto.AccountDTO;
+import com.javadaily.account.dto.ProductDTO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -23,4 +25,8 @@ public class OrderDTO implements Serializable {
     //单价
     private BigDecimal price;
     private String status;
+
+    private AccountDTO accountDTO;
+    private ProductDTO productDTO;
+
 }

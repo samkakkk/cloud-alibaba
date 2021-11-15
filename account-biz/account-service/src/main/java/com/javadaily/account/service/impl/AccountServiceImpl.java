@@ -4,6 +4,7 @@ import com.javadaily.account.mapper.AccountMapper;
 import com.javadaily.account.po.Account;
 import com.javadaily.account.service.AccountService;
 import com.javadaily.account.dto.AccountDTO;
+import com.javadaily.exception.BizException;
 import io.seata.core.context.RootContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -29,6 +30,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDTO selectByCode(String accountCode) {
+        if("javadaily".equals(accountCode)){
+            throw new BizException(accountCode + "用户不存在");
+        }
         AccountDTO accountDTO = new AccountDTO();
         Account account = accountMapper.selectByCode(accountCode);
         BeanUtils.copyProperties(account,accountDTO);

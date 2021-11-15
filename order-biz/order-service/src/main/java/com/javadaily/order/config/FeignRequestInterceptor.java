@@ -3,7 +3,6 @@ package com.javadaily.order.config;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -22,7 +21,7 @@ import java.util.UUID;
  * @author jianzh5
  * @date 2020/3/24 9:28
  */
-@Configuration
+//@Configuration
 @Slf4j
 public class FeignRequestInterceptor implements RequestInterceptor {
     /**
@@ -47,7 +46,7 @@ public class FeignRequestInterceptor implements RequestInterceptor {
                 template.header(T_REQUEST_ID, sid);
             }
 
-            log.debug("FeignRequestInterceptor:{}", template.toString());
+            log.info("FeignRequestInterceptor:{}", template.toString());
         }
     }
 
